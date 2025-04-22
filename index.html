@@ -1,10 +1,61 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>CoinFlick Game</title>
-  </head>
-  <body>
-    <h1>Welcome to CoinFlick!</h1>
-    <p>Tap-to-earn game coming soon...</p>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CoinFlick Game</title>
+  <style>
+    body {
+      background-color: #0d1117;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
+    #coin-counter {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    #tap-button {
+      background-color: #f9d342;
+      color: #000;
+      border: none;
+      border-radius: 12px;
+      font-size: 2rem;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    #tap-button:active {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body>
+  <h1>🪙 Welcome to CoinFlick!</h1>
+  <div id="coin-counter">Coins: 0</div>
+  <button id="tap-button">Tap!</button>
+
+  <script>
+    let coins = localStorage.getItem('coinCount') || 0;
+    const counter = document.getElementById('coin-counter');
+    const button = document.getElementById('tap-button');
+
+    function updateDisplay() {
+      counter.textContent = `Coins: ${coins}`;
+    }
+
+    button.addEventListener('click', () => {
+      coins++;
+      localStorage.setItem('coinCount', coins);
+      updateDisplay();
+    });
+
+    updateDisplay();
+  </script>
+</body>
 </html>
